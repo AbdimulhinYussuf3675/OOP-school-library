@@ -44,9 +44,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-**Add new students or teachers.**
-**Add new books.**
-**Save records of who borrowed a given book and when.**
+- [ ] **Add new students or teachers.**
+- [ ] **Add new books.**
+- [ ] **Save records of who borrowed a given book and when.**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
