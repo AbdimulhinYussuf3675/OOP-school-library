@@ -1,50 +1,50 @@
-require_relative 'app'
-
-def main
-  Main.new
-end
+require './app'
+require './options_module.rb'
+require_relative 'Creators/person_creator'
+require_relative 'Creators/book_creator'
+require_relative 'Creators/rental_creator'
 
 class Main
-  puts 'Welcome to School Library OOP App!'
-  def self.menu
-    puts
-    puts 'Please choose an option by entering a number'
-    @list = {
-      1 => 'List all books',
-      2 => 'List all people',
-      3 => 'Create a person',
-      4 => 'Create a book',
-      5 => 'Create a rental',
-      6 => 'List all rentals for a given person id',
-      7 => 'Exit'
-    }
-    @list.each do |id, option|
-      puts "#{id}: #{option}"
-    end
-    gets.chomp.to_i
+  def initialize
+    @app = App.new
   end
-  res = App.new
-  loop do
-    case menu
-    when 1
-      res.all_books
-    when 2
-      res.all_people
-    when 3
-      res.create_person
-    when 4
-      res.create_book
-    when 5
-      res.create_rental
-    when 6
-      res.list_rentals_of_person
-    when 7
-      puts 'Thank you for using this app!'
-      exit
-    else
-      puts 'Please choose a number between 1 and 7'
+  include Menu
+
+  def choose_option
+    loop do
+      display_menu
+      option = gets.chomp.to_i
+      break if option == 7
+
+      execute_options(option)
     end
+  end
+
+  def execute_options(option)
+    case option
+    when 1
+      @app.list_books
+    when 2
+      @app.list_people
+    when 3
+      @app.new_person
+    when 4
+      @app.new_book
+    when 5
+      @app.new_rental
+    when 6
+      @app.list_rentals
+    else
+      puts 'Invalid option, please try again'
+    end
+  end
+
+  def main
+    puts 'Welcome to School library app!'
+    choose_option
+    puts 'Thank you for using School library app!'
   end
 end
 
-main
+main = Main.new
+main.main
