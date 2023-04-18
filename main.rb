@@ -1,5 +1,5 @@
 require './app'
-require './options_module.rb'
+require './options_module'
 require_relative 'Creators/person_creator'
 require_relative 'Creators/book_creator'
 require_relative 'Creators/rental_creator'
